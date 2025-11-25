@@ -1,6 +1,7 @@
 body {
   padding: 0;
   margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .App {
@@ -10,97 +11,99 @@ body {
   width: 100vw;
   height: 100vh;
   flex-direction: column;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.app-header {
-  text-align: center;
-  background-color: #3b5998;
-  color: white;
-  width: 100%;
-}
-
+/* Two-Panel Layout */
 .app-container {
-  margin-top: 50px;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  height: 100vh;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-.room {
+/* No Chat Selected Screen */
+.no-chat-selected {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: #f5f5f5;
   height: 100vh;
 }
 
-.room label {
+.no-chat-content {
   text-align: center;
-  font-size: 25px;
-  margin-bottom: 20px;
+  color: #666;
 }
 
-.room input {
-  width: 200px;
-  height: 30px;
-  border: 2px solid #3b5998;
-  border-radius: 6px;
-  padding-left: 5px;
-  font-size: 20px;
-  text-align: center;
-  margin: 5px;
+.no-chat-content h2 {
+  font-size: 28px;
+  margin-bottom: 12px;
+  color: #333;
 }
 
-.room button {
-  width: 210px;
-  height: 40px;
-  border: none;
-  border-radius: 6px;
-  padding-left: 5px;
-  font-size: 20px;
-  text-align: center;
-  margin: 5px;
-  background-color: #3b5998;
-  color: white;
-  cursor: pointer;
+.no-chat-content p {
+  font-size: 16px;
+  color: #999;
 }
 
-.sign-out {
-  margin-top: 20px;
-  display: flex;
-  gap: 10px;
-}
-
-.sign-out button {
-  padding: 10px 20px;
-  background-color: #ff4444;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.sign-out button:first-child {
-  background-color: #666;
-}
-
+/* Auth Screen */
 .auth {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .auth p {
   font-size: 24px;
   margin-bottom: 20px;
+  color: white;
+  font-weight: 500;
 }
 
 .auth button {
   padding: 15px 30px;
   font-size: 18px;
-  background-color: #3b5998;
-  color: white;
+  background-color: white;
+  color: #667eea;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.auth button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.auth button:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app-container {
+    grid-template-columns: 1fr;
+  }
+
+  /* Hide sidebar on mobile when chat is active - can be enhanced with state */
+  .sidebar {
+    display: none;
+  }
+
+  .app-container.show-sidebar .sidebar {
+    display: flex;
+  }
+
+  .app-container.show-sidebar .chat-app {
+    display: none;
+  }
 }
